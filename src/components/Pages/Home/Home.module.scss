@@ -1,0 +1,16 @@
+.__home{
+  min-height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  .__titles{
+    h1, h3{
+      margin: 0;
+      text-align: center;
+    }
+    h1{
+    }
+
+  }
+}

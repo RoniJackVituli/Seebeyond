@@ -6,7 +6,11 @@ import { Accessibility } from 'accessibility';
 import { labels, modules } from './utils/options';
 
 window.addEventListener('load', function() {
-  new Accessibility({labels:labels, modules:modules,  });
+  new Accessibility({labels:labels, modules:modules, icon:{
+    circular:true,
+    img:'accessible',
+  },
+session:{persistent:false} });
 }, false);
 
 const root = ReactDOM.createRoot(

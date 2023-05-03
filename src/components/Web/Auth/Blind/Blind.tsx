@@ -28,7 +28,7 @@ const Blind = () => {
         </label>
 
         <label>
-          <input placeholder="" type="password" className="input" />
+          <input placeholder="" type="phone" className="input" />
           <span>מספר פלאפון</span>
         </label>
         <label>

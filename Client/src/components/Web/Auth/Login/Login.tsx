@@ -1,9 +1,16 @@
-import React from "react";
+import React , { useState , ChangeEvent , FormEvent} from "react";
 import "./Login.css";
 import Content from "../../../UI/Content/Content";
 import { useNavigate } from "react-router-dom";
+import { getUserInfo } from "../../../../utils/actions/User.actions";
+import { useDispatch } from "react-redux";
+import LoginData from "../../../../utils/interfaces/LoginData";
+import { toast } from "react-toastify";
+
+
 
 const Login = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate();
   const volunteerNavigate = () => {
     return navigate('/volunteer-register');
@@ -12,16 +19,36 @@ const Login = () => {
   const blindNavigate = () => {
     return navigate('/blind-register');
   }
+  const [loginData , setLoginData] = useState<LoginData>({email:'',password:''})
+  const onChangeHandler = (e:ChangeEvent<HTMLInputElement>) =>{
+    const {name , value} = e.target;
+    setLoginData({...loginData , [name]:value})
+  }
+
+  // const checkFields = () =>{
+  //   return true
+  //   // return !loginData.email || !loginData.password;
+  // }
+  const submitHandler = async (e:FormEvent) =>{
+    e.preventDefault();
+    const response = await getUserInfo(loginData,dispatch)
+    if (response.status===200){
+      console.log(response.data.type)
+      navigate(`/${response.data.type}`)
+      toast.success('Logged in Successfully')
+
+    }
+  }
 
 
   return (
     <Content>
       <div className="login">
 
-      <form className="form-login">
+      <form onSubmit={submitHandler} className="form-login">
         <p className="form-title">התחברות</p>
         <div className="input-container">
-          <input placeholder="הכנס מייל" type="email" />
+          <input name="email" onChange={onChangeHandler} placeholder="הכנס מייל" type="email" />
           <span>
             <svg
               stroke="currentColor"
@@ -39,7 +66,7 @@ const Login = () => {
           </span>
         </div>
         <div className="input-container">
-          <input placeholder="הכנס סיסמא" type="password" />
+          <input name="password" onChange={onChangeHandler} placeholder="הכנס סיסמא" type="password" />
 
           <span>
             <svg
@@ -63,7 +90,7 @@ const Login = () => {
             </svg>
           </span>
         </div>
-        <button className="submit" type="submit">
+        <button  className="submit" type="submit">
           התחברות
         </button>
 

@@ -46,7 +46,6 @@ function App() {
             <Route path="/blind-register" element={<Blind />} />
             <Route path="/login" element={<Login />} />
             <Route path="/home" element={<Home />} />
-            
 
             <Route path="*" element={<Navigate to="/home" />} />
           </Routes>

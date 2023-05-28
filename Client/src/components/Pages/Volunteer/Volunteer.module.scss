@@ -1,0 +1,42 @@
+.__volunteer_container{
+    min-height: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .__datavolunteer {
+        display: flex;
+        flex-direction: column;
+        border-radius: 10px;
+        background-color: #62a6dc;
+        height: 500px;
+        width: 500px;
+        direction: rtl;
+        align-items: center;
+        justify-content: center;
+        gap: 25px;
+        img{
+            width: 250;
+            height: 250px;
+        }
+
+       .__data{
+        justify-content: space-around;
+        width: 100%;
+        display: flex;
+        .__check{
+            span{
+                text-align: center;
+            }
+            span:first-child{
+                font-size: 20px;
+                font-weight: bold;
+            }
+            display: flex;
+            flex-direction: column;
+        }
+        .__check:first-child{
+        }
+       }
+       
+      }
+}

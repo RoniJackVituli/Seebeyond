@@ -1,0 +1,31 @@
+.__blind_container {
+  display: flex;
+  min-height: inherit;
+  align-items: center;
+  justify-content: center;
+
+  .__askforhelp {
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: #62a6dc;
+    height: 500px;
+    width: 500px;
+    direction: rtl;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 15px 12px 0px rgba(255, 255, 255, 0.1);
+    h1 {
+      text-shadow: 0.1rem 0.1em 0 hsl(200 50% 50%);
+      line-height: 130px;
+      margin: 0;
+      text-align: center;
+      font-size: 150px;
+    }
+   
+  }
+  
+  .__askforhelp:active{
+    box-shadow: none;
+  }
+}

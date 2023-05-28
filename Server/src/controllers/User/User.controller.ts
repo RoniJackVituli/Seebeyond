@@ -16,6 +16,7 @@ class UserController implements Controller{
 
     private initRouters = () => {
         this.router.post(`${this.path}/signup`, this.signup);
+        this.router.post(`${this.path}/login`, this.login);
     }
 
     public signup = async (req:Request, res:Response, next:NextFunction) => {
@@ -46,6 +47,31 @@ class UserController implements Controller{
             next(new HttpException(error.status, error.message));
         }
     }
+
+    public login = async (req:Request, res:Response, next:NextFunction) => {
+        const {email, password} = req.body;
+        try {
+            if(!email || !password) throw new HttpException(400, 'פרטים לא נכונים');
+            const user = await UserModel.findOne({email:email});
+            if(!user) throw new HttpException(400, 'פרטים לא נכונים');
+            const user_password = user.password;
+            if(password !== user_password) throw new HttpException(400, 'פרטים לא נכונים');
+
+            res.status(200).send({
+                message:'Login successfully',
+                data:{
+                    first_name:user.first_name,
+                    last_name:user.last_name,
+                    email:user.email,
+                    type:user.type,
+                },
+                status:200
+            })
+        } catch (error:any) {
+            next(new HttpException(error.status, error.message))
+        }
+    }
+
 
 }
 

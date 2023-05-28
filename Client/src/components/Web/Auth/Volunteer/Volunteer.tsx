@@ -139,7 +139,9 @@ const Volunteer = () => {
           </label>
           <button disabled={isFormValid()} className="submit">הרשמה</button>
           <p className="signin">
-            כבר יש לך משתמש? <a href="#Link">התחברות</a>{" "}
+            כבר יש לך משתמש? <span onClick={()=>{
+              return navigation('/login');
+            }}>התחברות</span>{" "}
           </p>
         </form>
       </div>

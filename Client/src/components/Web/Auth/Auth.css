@@ -59,11 +59,12 @@
   text-align: center;
 }
 
-.signin a {
+.signin span {
+  cursor: pointer;
   color: royalblue;
 }
 
-.signin a:hover {
+.signin span:hover {
   text-decoration: underline royalblue;
 }
 

@@ -12,9 +12,12 @@ import Volunteer from "./components/Web/Auth/Volunteer/Volunteer";
 import Blind from "./components/Web/Auth/Blind/Blind";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-
+import { useSelector } from "react-redux";
+import { RootState } from "./store/store";
+import Login from "./components/Web/Auth/Login/Login";
 
 function App() {
+  const user_type = useSelector((state:RootState) => state.user.user?.type);
   return (
     <>
       <Router>
@@ -37,7 +40,20 @@ function App() {
           <Routes>
             <Route path="/volunteer-register" element={<Volunteer />} />
             <Route path="/blind-register" element={<Blind />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/home" element={<Home />} />
+            
+            {user_type === 'blind' && 
+              <Route path="/blind" element={<Blind />} />
+        
+            }
+
+
+            {user_type === 'volunteer' && 
+              <Route path="/blind" element={<Volunteer />} />
+        
+            }
+
             <Route path="*" element={<Navigate to="/home" />} />
           </Routes>
         </Container>

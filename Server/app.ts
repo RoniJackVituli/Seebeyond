@@ -1,3 +1,0 @@
-const helloServer = () => {
-    return ''
-}

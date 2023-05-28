@@ -3,12 +3,13 @@ import "../Auth.css";
 import Content from "../../../UI/Content/Content";
 import UserDetails from "../../../../utils/interfaces/userDetails";
 import { SignUpAction } from "../../../../utils/actions/User.actions";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import {
   ValidateFields,
   ValidateEmail,
   ValidatePhone,
+  ValidatePassword,
 } from "../../../../utils/function/ValidateData";
 
 const Volunteer = () => {
@@ -33,8 +34,7 @@ const Volunteer = () => {
     const data = await SignUpAction(userData);
     if (data.status === 200) {
       toast.success(`${data.message}`);
-      navigation('/home')
-
+      navigation("/home");
     } else {
       toast.warning(`${data.message}`);
     }
@@ -43,10 +43,10 @@ const Volunteer = () => {
     return (
       !ValidateFields(userData) ||
       !ValidateEmail(userData.email) ||
-      !ValidatePhone(userData.phone)
-    )
+      !ValidatePhone(userData.phone) ||
+      !ValidatePassword(userData.password, userData.confirm_password)
+    );
   };
-  
 
   return (
     <Content>
@@ -129,15 +129,26 @@ const Volunteer = () => {
           </label>
           <label>
             <input
+              style={
+                userData.password && userData.confirm_password &&!ValidatePassword(userData.password,userData.confirm_password)
+                  ? { borderColor: "red" }
+                  : {}
+              }
               placeholder=""
               type="password"
               className="input"
               name="confirm_password"
               onChange={onChangeHandler}
             />
-            <span>אימות סיסמא</span>
+            {userData.password &&userData.confirm_password &&  !ValidatePassword(userData.password,userData.confirm_password) ? (
+              <span style={{ color: "red" }}>הסיסמאות אינן תואמות</span>
+            ) : (
+              <span>אימות סיסמא</span>
+            )}
           </label>
-          <button disabled={isFormValid()} className="submit">הרשמה</button>
+          <button disabled={isFormValid()} className="submit">
+            הרשמה
+          </button>
           <p className="signin">
             כבר יש לך משתמש? <a href="#Link">התחברות</a>{" "}
           </p>

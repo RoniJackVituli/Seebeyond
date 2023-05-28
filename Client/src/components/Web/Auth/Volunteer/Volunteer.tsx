@@ -1,7 +1,9 @@
-import React , { ChangeEvent, useEffect, useState }from "react";
+import React , { ChangeEvent, FormEvent, useState }from "react";
 import "../Auth.css";
 import Content from "../../../UI/Content/Content";
 import UserDetails from "../../../../utils/interfaces/userDetails";
+import { SignUpAction } from "../../../../utils/actions/User.actions";
+import { toast } from "react-toastify";
 
 
 const Volunteer = () => {
@@ -19,13 +21,38 @@ const Volunteer = () => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
   };
-  useEffect(() => {
-    console.log(userData);
-  }, [userData]);
-  return (
+
+/* @BoazBitton.
+  TODO:
+  - Please make validitions to userData
+  - make sure all the fields are not empty.
+  - valid email is correct email meaing with @ char.
+  - valid phone number with 10 digits that start with code +972 or start with 054,3,2,0,8
+  - please used only with regular expressions.
+*/
+  const submitHandler = async (event:FormEvent) => {
+    event.preventDefault();
+
+    //VALIDTION!!!!!!!!!!!!!!!!
+
+    const data = await SignUpAction(userData);
+    if(data.status === 200){
+      toast.success(`${data.message}`);
+    }else{
+      toast.warning(`${data.message}`);
+    }
+
+
+
+  }
+  /*@BoazBitton.
+  TODO: 
+  - add error message for incorrect input.
+  */
+  return(
     <Content>
     <div className="volunteer">
-      <form className="form">
+      <form className="form" onSubmit={submitHandler}>
         <p className="title">באת לעשות טוב לעולם!</p>
         <p className="message">אנא מלא את הפרטים הבאים </p>
         <div className="flex">

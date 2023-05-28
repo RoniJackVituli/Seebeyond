@@ -1,12 +1,18 @@
-import React , { ChangeEvent, FormEvent, useState }from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import "../Auth.css";
 import Content from "../../../UI/Content/Content";
 import UserDetails from "../../../../utils/interfaces/userDetails";
 import { SignUpAction } from "../../../../utils/actions/User.actions";
+import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
-
+import {
+  ValidateFields,
+  ValidateEmail,
+  ValidatePhone,
+} from "../../../../utils/function/ValidateData";
 
 const Volunteer = () => {
+  const navigation = useNavigate();
   const [userData, setUserData] = useState<UserDetails>({
     type: "volenteer",
     first_name: "",
@@ -22,40 +28,33 @@ const Volunteer = () => {
     setUserData({ ...userData, [name]: value });
   };
 
-/* @BoazBitton.
-  TODO:
-  - Please make validitions to userData
-  - make sure all the fields are not empty.
-  - valid email is correct email meaing with @ char.
-  - valid phone number with 10 digits that start with code +972 or start with 054,3,2,0,8
-  - please used only with regular expressions.
-*/
-  const submitHandler = async (event:FormEvent) => {
+  const submitHandler = async (event: FormEvent) => {
     event.preventDefault();
-
-    //VALIDTION!!!!!!!!!!!!!!!!
-
     const data = await SignUpAction(userData);
-    if(data.status === 200){
+    if (data.status === 200) {
       toast.success(`${data.message}`);
-    }else{
+      navigation('/home')
+
+    } else {
       toast.warning(`${data.message}`);
     }
+  };
+  const isFormValid = () => {
+    return (
+      !ValidateFields(userData) ||
+      !ValidateEmail(userData.email) ||
+      !ValidatePhone(userData.phone)
+    )
+  };
+  
 
-
-
-  }
-  /*@BoazBitton.
-  TODO: 
-  - add error message for incorrect input.
-  */
-  return(
+  return (
     <Content>
-    <div className="volunteer">
-      <form className="form" onSubmit={submitHandler}>
-        <p className="title">באת לעשות טוב לעולם!</p>
-        <p className="message">אנא מלא את הפרטים הבאים </p>
-        <div className="flex">
+      <div className="volunteer">
+        <form className="form" onSubmit={submitHandler}>
+          <p className="title">באת לעשות טוב לעולם!</p>
+          <p className="message">אנא מלא את הפרטים הבאים </p>
+          <div className="flex">
             <label>
               <input
                 name="first_name"
@@ -81,24 +80,42 @@ const Volunteer = () => {
 
           <label>
             <input
+              style={
+                userData.email && !ValidateEmail(userData.email)
+                  ? { borderColor: "red" }
+                  : {}
+              }
               placeholder=""
               type="email"
               className="input"
               name="email"
               onChange={onChangeHandler}
             />
-            <span>אימייל</span>
+            {userData.email && !ValidateEmail(userData.email) ? (
+              <span style={{ color: "red" }}>הכנס אימייל חוקי</span>
+            ) : (
+              <span>אימייל</span>
+            )}
           </label>
 
           <label>
             <input
+              style={
+                userData.phone && !ValidatePhone(userData.phone)
+                  ? { borderColor: "red" }
+                  : {}
+              }
               placeholder=""
               type="phone"
               className="input"
               name="phone"
               onChange={onChangeHandler}
             />
-            <span>מספר פלאפון</span>
+            {userData.phone && !ValidatePhone(userData.phone) ? (
+              <span style={{ color: "red" }}>הכנס פלאפון חוקי</span>
+            ) : (
+              <span>פלאפון</span>
+            )}
           </label>
           <label>
             <input
@@ -120,15 +137,13 @@ const Volunteer = () => {
             />
             <span>אימות סיסמא</span>
           </label>
-          <button className="submit">הרשמה</button>
+          <button disabled={isFormValid()} className="submit">הרשמה</button>
           <p className="signin">
             כבר יש לך משתמש? <a href="#Link">התחברות</a>{" "}
           </p>
-      </form>
-    </div>
-
+        </form>
+      </div>
     </Content>
-
   );
 };
 

@@ -1,10 +1,11 @@
 import express, { Application } from "express";
-import Controller from "../utils/interfaces";
+import Controller from "../utils/Interfaces/Controller";
 import mongoose, { connect, ConnectOptions } from "mongoose";
 import cors from "cors";
 import helmet from "helmet";
 import bodyParser from "body-parser";
 import dotenv from 'dotenv'
+import ErrorMiddleware from "./middlewares/Error/error.middleware";
 
 dotenv.config();
 
@@ -20,6 +21,8 @@ class App {
     this.initialiseDatabaseConnection();
     this.initialiseMiddleware();
     this.initialiseControllers(controllers);
+    this.express.use(ErrorMiddleware)
+
   }
 
   private initialiseMiddleware(): void {
@@ -31,7 +34,7 @@ class App {
 
   private initialiseControllers(controllers: Controller[]): void {
     controllers.forEach((controller: Controller) => {
-      this.express.use("/api/", controller.router);
+      this.express.use("/api", controller.router);
     });
   }
 

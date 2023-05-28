@@ -1,4 +1,4 @@
-export default interface UserDetails {
+export interface UserDetails {
     type: string,
     first_name: string,
     last_name: string,
@@ -7,6 +7,3 @@ export default interface UserDetails {
     password: string,
     confirm_password: string,
 }
-
-
-

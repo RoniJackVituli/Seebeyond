@@ -12,14 +12,14 @@ import Volunteer from "./components/Web/Auth/Volunteer/Volunteer";
 import Blind from "./components/Web/Auth/Blind/Blind";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { useSelector } from "react-redux";
-import { RootState } from "./store/store";
+// import { useSelector } from "react-redux";
+// import { RootState } from "./store/store";
 import Login from "./components/Web/Auth/Login/Login";
 import BlindPage from "./components/Pages/Blind/BlindPage";
 import VolunteerPage from "./components/Pages/Volunteer/VolunteerPage";
 
 function App() {
-  const user_type = useSelector((state:RootState) => state.user.user?.type);
+  // const user_type = useSelector((state:RootState) => state.user.user?.type);
   return (
     <>
       <Router>

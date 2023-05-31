@@ -14,7 +14,7 @@ import {
 const Volunteer = () => {
   const navigation = useNavigate();
   const [userData, setUserData] = useState<UserDetails>({
-    type: "volenteer",
+    type: "volunteer",
     first_name: "",
     last_name: "",
     email: "",

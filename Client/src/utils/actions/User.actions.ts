@@ -27,3 +27,15 @@ export const getUserInfo = async (logindata:LoginData,dispatch:any):Promise<Resp
         return error.response.data;
     }
 }
+export const findVolunteer = async (email:string):Promise<ResponseType> =>{
+    try {
+        const {data} = await axios.post(`${PATH_SERVER}/blind/needhelp`,{
+            email:email
+        })
+        return data;
+        
+    } catch (error:any) {
+        return error.response.data;
+        
+    }
+}

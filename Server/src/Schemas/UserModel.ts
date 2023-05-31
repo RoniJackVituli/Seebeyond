@@ -7,6 +7,16 @@ const UserSchema = new mongoose.Schema({
     password:{type:String},
     phone:{type:String},
     email:{type:String},
+    available:{type:String},
+    rate:{type:Number},
+    reviews:[
+        {
+            title:String,
+            content:String,
+            from:String,
+            type:String,
+        }
+    ]
 
 })
 

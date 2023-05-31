@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate();
+  const [error, setError] = useState<string>('');
   const volunteerNavigate = () => {
     return navigate('/volunteer-register');
   }
@@ -33,11 +34,10 @@ const Login = () => {
     e.preventDefault();
     const response = await getUserInfo(loginData,dispatch)
     if (response.status===200){
-      console.log(response.data.type)
-      navigate(`/${response.data.type}`)
       toast.success('Logged in Successfully')
-
+      return navigate(`/home`)
     }
+    setError(response.message);
   }
 
 
@@ -101,6 +101,9 @@ const Login = () => {
           <span onClick={blindNavigate}>עיוור</span>
           </div>
         </p>
+        {error && <p style={{color:'red', textAlign:'center'}}>
+          {error}
+          </p>}
       </form>
       </div>
 

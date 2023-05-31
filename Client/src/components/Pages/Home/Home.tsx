@@ -2,6 +2,7 @@ import React from 'react'
 import Content from '../../UI/Content/Content'
 import classes from './Home.module.scss';
 import { useNavigate } from 'react-router-dom';
+
 const Home = () => {
 
   const navigation = useNavigate();
@@ -13,6 +14,7 @@ const Home = () => {
     navigation('/blind-register');
   }
 
+  
 
   return (
       <Content>

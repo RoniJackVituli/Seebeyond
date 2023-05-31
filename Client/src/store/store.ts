@@ -16,7 +16,7 @@ const store = configureStore({
   
   
 });
-const expiresIn: number =  5 * 60 * 1000;
+const expiresIn: number =  30 * 60 * 1000;
 
 store.subscribe(() => {
   const { user } = store.getState();

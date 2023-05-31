@@ -21,7 +21,6 @@ export const getUserInfo = async (logindata:LoginData,dispatch:any):Promise<Resp
         const {data} = await axios.post(`${PATH_SERVER}/user/login`,{
             ...logindata
         })
-        console.log(data)
         dispatch(UserAction.setUser({user:data.data}))
         return data;
     } catch (error:any) {

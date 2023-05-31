@@ -6,21 +6,21 @@ import { Accessibility } from "accessibility";
 import { labels, modules } from "./utils/options";
 import { Provider } from "react-redux";
 import store from "./store/store";
-window.addEventListener(
-  "load",
-  function () {
-    new Accessibility({
-      labels: labels,
-      modules: modules,
-      icon: {
-        circular: true,
-        img: "accessible",
-      },
-      session: { persistent: false },
-    });
-  },
-  false
-);
+// window.addEventListener(
+//   "load",
+//   function () {
+//     new Accessibility({
+//       labels: labels,
+//       modules: modules,
+//       icon: {
+//         circular: true,
+//         img: "accessible",
+//       },
+//       session: { persistent: false },
+//     });
+//   },
+//   false
+// );
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

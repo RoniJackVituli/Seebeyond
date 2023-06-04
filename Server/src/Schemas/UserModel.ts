@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+import { ObjectId } from 'mongodb';
 const UserSchema = new mongoose.Schema({
     type:{type:String},
     first_name:{type:String},
@@ -7,14 +7,15 @@ const UserSchema = new mongoose.Schema({
     password:{type:String},
     phone:{type:String},
     email:{type:String},
-    available:{type:String},
-    rate:{type:Number},
+    available:{type:Boolean ,default:true},
+    rate:{type:Number ,default:0},
+    blind:{ type: mongoose.Schema.Types.ObjectId, ref: 'users' },
+    volunteer:{ type: mongoose.Schema.Types.ObjectId, ref: 'users' },
     reviews:[
         {
             title:String,
             content:String,
-            from:String,
-            type:String,
+            rate:Number,
         }
     ]
 

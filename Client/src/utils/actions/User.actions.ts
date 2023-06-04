@@ -39,3 +39,35 @@ export const findVolunteer = async (email:string):Promise<ResponseType> =>{
         
     }
 }
+
+export const FindNextVolunteer = async (email_volunteer:string, email_blind:string):Promise<ResponseType> =>{ 
+    try {
+        const {data} = await axios.post(`${PATH_SERVER}/blind/next`,{
+            email_volunteer,
+            email_blind
+        })
+        return data;
+        
+    } catch (error:any) {
+        return error.response.data;
+        
+    }
+}
+
+
+export const RateVolunteer = async (dispatch:any, correct_user:any ,rate:{rate:number, message:string ,title:string}, user:any):Promise<ResponseType> => {
+    try {
+        debugger;
+        const {data} = await axios.post(`${PATH_SERVER}/${user.type}/rate`,{
+            rate,
+            email:user.email,
+            [correct_user.type]: correct_user,
+        })
+        await dispatch(UserAction.setUser({user:data.data}));
+        return data;
+        
+    } catch (error:any) {
+        return error.response.data;
+        
+    }
+}

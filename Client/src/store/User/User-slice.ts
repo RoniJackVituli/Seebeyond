@@ -5,6 +5,8 @@ interface Details{
     type:string,
     first_name:string,
     last_name:string,
+    volunteer:any,
+    blind:{email:string, first_name:string, last_name:string, _id:string},
     email:string,
 }
 
@@ -24,8 +26,8 @@ const userSlice = createSlice({
     reducers:{
 
         setUser(state, action){
-            const {first_name,last_name,email,type} = action.payload.user;
-            return {user:{type, first_name, last_name,email}}
+            const {first_name,last_name,email, blind, volunteer ,type} = action.payload.user;
+            return {user:{type, first_name, last_name, email, volunteer, blind}}
         },
 
         clearUser(state){

@@ -5,6 +5,7 @@
   justify-content: center;
 
   .__askforhelp {
+    color: white;
     cursor: pointer;
     border-radius: 10px;
     background-color: #62a6dc;
@@ -24,7 +25,117 @@
     }
    
   }
+
+  .__contant{
+    color: white;
+
+    direction: rtl;
+    text-align: center;
+    h1{
+      font-size: 5em;
+      margin: 0;
+    }
+    p{
+      font-size: 2.4em;
+    }
+    .__btns{
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      button {
+        border: none;
+        background-color: seagreen;
+        color: white;
+        font-size: 1.15rem;
+        font-weight: 500;
+        padding: 0.8rem 2rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+        transform: translate(1) translate(0, 0);
+        transition: transform 225ms, box-shadow 225ms;
+      }
+      
+      button:hover {
+        transform: scale(1.05) translate(0, -0.15rem);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.35);
+      }
+      
+      button:active {
+        transform: scale(1) translate(0, 0.15rem);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+      }
+
+      button:last-child{
+        background-color: red;
+      }
+      
+    }
+  }
   
+  .__review{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    direction: rtl;
+    div{
+      direction: ltr;
+      align-items: none;
+      justify-content: none;
+      flex-direction: row;
+    }
+    h1{
+      font-weight: bold;
+      font-size: 3rem;
+    }
+    form{
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      label{
+        font-weight: bold;
+      }
+      
+      textarea, input{
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.131);
+        background: inherit;
+        width: 500px;
+        height: 150px;
+        outline: none;
+        padding: 5px ;
+      }
+      input{
+        height: 50px;
+      }
+      button {
+        border: none;
+        background-color: seagreen;
+        color: white;
+        font-size: 1.15rem;
+        font-weight: 500;
+        padding: 0.8rem 2rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+        transform: translate(1) translate(0, 0);
+        transition: transform 225ms, box-shadow 225ms;
+      }
+      
+      button:hover {
+        transform: scale(1.05) translate(0, -0.15rem);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.35);
+      }
+      
+      button:active {
+        transform: scale(1) translate(0, 0.15rem);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+      }
+
+
+    }
+  }
   .__askforhelp:active{
     box-shadow: none;
   }

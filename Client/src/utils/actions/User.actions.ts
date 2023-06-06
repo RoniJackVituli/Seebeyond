@@ -72,3 +72,18 @@ export const RateVolunteer = async (dispatch:any, correct_user:any ,rate:{rate:n
         
     }
 }
+
+export const cancelVolunteering = async (email:string,emailBlind:string):Promise<ResponseType> =>{
+    try {
+        const {data} = await axios.post(`${PATH_SERVER}/blind/cancel`,{
+            
+            email:email,
+            email_blind:emailBlind
+        })
+        return data;
+        
+    } catch (error:any) {
+        return error.response.data;
+        
+    }
+}

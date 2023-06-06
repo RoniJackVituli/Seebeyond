@@ -6,13 +6,16 @@ import { RootState } from "../../../store/store";
 import {
   FindNextVolunteer,
   findVolunteer,
+  cancelVolunteering,
 } from "../../../utils/actions/User.actions";
 import { useState } from "react";
 import Review from "../../Web/Review/Review";
 import ReactStars from "react-stars";
+import { toast } from "react-toastify";
 const PROCESSMSG: string = "אנחנו מחפשים לך מתנדב אנא המתן";
 const ERRMSG: string = "לא מצאנו לך מתנדב לחץ שוב על הכפתור לניסיון נוסף";
-
+const ABORTMSG:string = "בקשת ההתנדבות בוטלה נשמח לעזור לך בכל עת שוב";
+// first_name:'בועז',last_name:"ביטון",phone:'0526203790',email:'Boaz2119@gmail.com'
 const BlindPage = () => {
   const email = useSelector((state: RootState) => state.user.user!.email);
   const [volunteer, setVolunteer] = useState<any>({});
@@ -62,6 +65,24 @@ const BlindPage = () => {
       speakerHandler(READYMSG);
     }
   };
+  const cancelVolunteer = async () => {
+    if (volunteer){
+      speakerHandler(ABORTMSG);
+      const response = await cancelVolunteering(volunteer.email,email);
+      if (response.status === 200) {
+        setVolunteer({});
+        setHandle(false);
+      }
+      else{
+        toast.warning(response.message)
+      
+      }
+      
+    }
+
+
+    
+  }
   
   return (
     <Content>
@@ -90,6 +111,7 @@ const BlindPage = () => {
                 טופל
               </button>
               <button onClick={nextVolunteer}>רוצה מישהו/י אחר/ת</button>
+              <button onClick={cancelVolunteer}>בטל</button>
             </div>
 
             <div className={classes.__reviews}>

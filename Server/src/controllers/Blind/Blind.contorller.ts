@@ -23,7 +23,7 @@ class BlindController implements Controller {
     try {
         await this.delay(3000);
         const blind_user = await UserModel.findOne({email:email});
-        const volunteer_user = await UserModel.findOne({ type: 'volunteer', available: 'yes'}).sort({ rate: -1 })
+        const volunteer_user = await UserModel.findOne({ type: 'volunteer', available: true}).sort({ rate: -1 })
         if(!blind_user || !volunteer_user) throw new HttpException(404, 'email not send');
         await send_email_to_client(volunteer_user, blind_user);
 
@@ -39,9 +39,12 @@ class BlindController implements Controller {
             last_name: volunteer_user.last_name,
             phone: volunteer_user.phone,
             email:volunteer_user.email,
+            reviews:volunteer_user.reviews,
             type:volunteer_user.type,
         }}});
     } catch (error:any) {
+      console.log(error.message);
+      
         next(new HttpException(error.status, error.message));
     }
   };
@@ -73,6 +76,7 @@ class BlindController implements Controller {
             last_name: new_volunteer_user.last_name,
             phone: new_volunteer_user.phone,
             email:new_volunteer_user.email,
+            reviews:new_volunteer_user.reviews,
             type:new_volunteer_user.type,
         }}});
         

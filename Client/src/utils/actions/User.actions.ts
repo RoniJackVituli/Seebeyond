@@ -16,6 +16,7 @@ export const SignUpAction = async (userDetails:UserDetails):Promise<ResponseType
         return error.response.data;
     }
 }
+
 export const getUserInfo = async (logindata:LoginData,dispatch:any):Promise<ResponseType> => {
     try {
         const {data} = await axios.post(`${PATH_SERVER}/user/login`,{
@@ -27,6 +28,7 @@ export const getUserInfo = async (logindata:LoginData,dispatch:any):Promise<Resp
         return error.response.data;
     }
 }
+
 export const findVolunteer = async (email:string):Promise<ResponseType> =>{
     try {
         const {data} = await axios.post(`${PATH_SERVER}/blind/needhelp`,{
@@ -53,7 +55,6 @@ export const FindNextVolunteer = async (email_volunteer:string, email_blind:stri
         
     }
 }
-
 
 export const RateVolunteer = async (dispatch:any, correct_user:any ,rate:{rate:number, message:string ,title:string}, user:any):Promise<ResponseType> => {
     try {

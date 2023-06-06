@@ -16,22 +16,9 @@ export const labels = {
   bigCursor: 'סמן גדול',
   readingGuide: 'מדריך קריאה',
   textToSpeech: 'מצב קריאה',
-  speechToText: 'speech to text',
-  disableAnimations: 'להשבית אנימציות'
+  speechToText: 'דבר לטקסט',
+  disableAnimations: ''
 };
 export const modules = {
-  increaseText: true,
-  decreaseText: true,
-  invertColors: true,
-  increaseTextSpacing: true,
-  decreaseTextSpacing: true,
-  increaseLineHeight: true,
-  decreaseLineHeight: true,
-  grayHues: true,
-  underlineLinks: true,
-  bigCursor: true,
-  readingGuide: true,
-  textToSpeech: true,
-  speechToText: false,
-  disableAnimations: true
+
 };

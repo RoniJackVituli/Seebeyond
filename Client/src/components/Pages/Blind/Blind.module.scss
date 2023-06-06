@@ -139,4 +139,35 @@
   .__askforhelp:active{
     box-shadow: none;
   }
+  .__reviews{
+    margin-top: 2.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .title{
+      margin: 0;
+    }
+    h1{
+      font-size: 30px;
+      margin: 0 !important;
+      border-bottom: 1px solid;
+    }
+    
+    .__content{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      h1{
+        border-bottom: none;
+        font-size: 20px;
+        margin: 0;
+      }
+      p{
+        font-size: 14px;
+        margin: 0;
+      }
+    }
+  }
 }
+
+

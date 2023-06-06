@@ -26,9 +26,7 @@ const VolunteerPage = () => {
             </div>
           </div>
         </div>}
-      {blind && 
-        <Review user={blind}/>
-      }
+      {blind && <Review user={blind}/>}
       </div>
     </Content>
   );

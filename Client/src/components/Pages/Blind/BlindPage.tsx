@@ -9,6 +9,7 @@ import {
 } from "../../../utils/actions/User.actions";
 import { useState } from "react";
 import Review from "../../Web/Review/Review";
+import ReactStars from "react-stars";
 const PROCESSMSG: string = "אנחנו מחפשים לך מתנדב אנא המתן";
 const ERRMSG: string = "לא מצאנו לך מתנדב לחץ שוב על הכפתור לניסיון נוסף";
 
@@ -61,7 +62,7 @@ const BlindPage = () => {
       speakerHandler(READYMSG);
     }
   };
-
+  
   return (
     <Content>
       <div className={`${classes.__blind_container}`}>
@@ -89,6 +90,25 @@ const BlindPage = () => {
                 טופל
               </button>
               <button onClick={nextVolunteer}>רוצה מישהו/י אחר/ת</button>
+            </div>
+
+            <div className={classes.__reviews}>
+
+              {volunteer.reviews && volunteer.reviews?.length > 0 &&  
+              <>
+                <h1 className={classes.title}>ביקורות על {volunteer.first_name} {volunteer.last_name}</h1>
+                <>
+                {volunteer.reviews.map((review:any) => {
+                return <div className={classes.__content}>
+                  <h1>{review.title}</h1>
+                  <p>{review.content}</p>
+                  <ReactStars value={review.rate}/>
+                </div>
+              
+                })}
+                </>
+              </>
+              }
             </div>
           </div>
         )}

@@ -16,7 +16,7 @@ export const send_email_to_client = async (volunteer:any, blind: any) => {
       <html xmlns="http://www.w3.org/1999/xhtml">
       
       <head>
-          <title>Win-Game Email Verification</title>
+          <title>SeeBeyond Email Verification</title>
           <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
           <style>
               @font-face {
@@ -56,24 +56,23 @@ export const send_email_to_client = async (volunteer:any, blind: any) => {
                   <p style="font-size: 20px; margin: 5px 0px; padding: 0;">
                     האם ברצונך לעזור?
                   </p>
-                  <div style="margin-top: 20px; width: 100%; direction: rtl;" align="center">
-                        <a href="tel:${blind.phone}" style="text-decoration: none; color: white; background-color: #FF3399; border-radius: 10px; font-weight: bold; width: 150px; font-size: 20px; display: block; margin: 0 auto; padding: 10px 20px;">התקשר ${blind.phone}</a>
+                  <div style="margin-top: 20px; width: 100%;display:flex; flex-direction:row; direction: rtl;" align="center">
+                        <a href="tel:${blind.phone}" style="text-decoration: none; color: white; background-color: #FF3399; border-radius: 10px; font-weight: bold; width: 150px; font-size: 20px; argin: 0 auto; padding: 10px 20px;">התקשר ${blind.phone}</a>
                         <a href="#" onclick="sendRequest('https://localhost:4001/api/volunteer/next')" style="text-decoration: none; color: white; background-color: red; border-radius: 10px; font-weight: bold; width: 150px; font-size: 20px; display: block; margin: 0 auto; padding: 10px 20px;">בטל</a>
                    </div>
             
                   <div style="font-size: 20px; margin: 20px 0px 5px; padding: 0; direction: rtl;">
                     אלו הביקורות על ${blind.first_name} ${blind.last_name}:
                     ${blind.reviews.map((review:any, _idx:number)=>{
-                        return `
+                        return( `
                         <br/>
-                        ${_idx + 1}) <span style="font-size: 20px; padding: 0; direction: rtl;">${review.title}</span>
+                        ${_idx + 1} )<span style="font-size: 20px; padding: 0; direction: rtl;">${review.title}</span>
                         <br/>
                         <span style="font-size: 15px; padding: 0; direction: rtl;">${review.content}</span>
                         <br/>
                         <span style="font-size: 13px; padding: 0; direction: rtl;">דירוג: ${review.rate}</span>
                         <br/>
-                        <br/>
-                        `
+                        <br/>`)
                     })}
                   </div>
                   <p style="font-size: 20px; margin: 5px 0px; padding: 0;direction: rtl;">תודה רבה </p>
